@@ -17,3 +17,11 @@ func makeUpperCaseEndpoint(service businesslogic.StringService) endpoint.Endpoin
 		return rpc.UpperCaseResponse{transformedWord, ""}, nil
 	}
 }
+
+func makeCountEndpoint(service businesslogic.StringService) endpoint.Endpoint {
+	return func(ctx context.Context, request interface{}) (interface{}, error) {
+		req := request.(rpc.CountRequest)
+		wordLength := service.Count(req.OriginalWord)
+		return rpc.CountResponse{wordLength}, nil
+	}
+}

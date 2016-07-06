@@ -7,7 +7,7 @@ import (
 	"golang.org/x/net/context"
 )
 
-func makeUpperCaseEndpoint(service businesslogic.StringService) endpoint.Endpoint {
+func MakeUpperCaseEndpoint(service businesslogic.StringService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(rpc.UpperCaseRequest)
 		transformedWord, err := service.UpperCase(req.OriginalWord)
@@ -18,7 +18,7 @@ func makeUpperCaseEndpoint(service businesslogic.StringService) endpoint.Endpoin
 	}
 }
 
-func makeCountEndpoint(service businesslogic.StringService) endpoint.Endpoint {
+func MakeCountEndpoint(service businesslogic.StringService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(rpc.CountRequest)
 		wordLength := service.Count(req.OriginalWord)

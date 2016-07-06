@@ -10,10 +10,10 @@ import (
 func makeUpperCaseEndpoint(service businesslogic.StringService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(rpc.UpperCaseRequest)
-		v, err := service.UpperCase(req.OriginalWord)
+		transformedWord, err := service.UpperCase(req.OriginalWord)
 		if err != nil {
-			return rpc.UpperCaseResponse{v, err.Error()}, nil
+			return rpc.UpperCaseResponse{transformedWord, err.Error()}, nil
 		}
-		return rpc.UpperCaseResponse{v, ""}, nil
+		return rpc.UpperCaseResponse{transformedWord, ""}, nil
 	}
 }
